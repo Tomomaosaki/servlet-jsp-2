@@ -1,0 +1,10 @@
+@charset "UTF-8";
+
+img {
+  width: 100px;
+}
+
+button[name="hand"] {
+	background-color: transparent;
+	border: none;
+}
