@@ -1,5 +1,17 @@
 @charset "UTF-8";
 
+body, h1, h2, h3, p, ul {
+	margin: 0;
+}
+
+ul {
+	padding: 0;
+}
+a {
+	color: #000;
+	text-decoration: underline;
+ }
+
 img {
   width: 100px;
 }
@@ -7,4 +19,20 @@ img {
 button[name="hand"] {
 	background-color: transparent;
 	border: none;
+}
+
+header h1,
+main {
+	width: 80%;
+	margin: 0 auto;
+}
+
+header,
+footer {
+	background-color: lightblue;
+	padding: 10px auto;
+}
+
+footer {
+	position: fixed;
 }

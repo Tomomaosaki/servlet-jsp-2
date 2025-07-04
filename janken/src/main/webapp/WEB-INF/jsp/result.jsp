@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="model.GameManager" %>
 <%
-String msg = (String)request.getAttribute("msg");
+GameManager manager = (GameManager)request.getAttribute("manager");
 %>
 <!DOCTYPE html>
 <html>
@@ -17,7 +18,8 @@ String msg = (String)request.getAttribute("msg");
   </header>
   
   <main>
-    <p><%= msg %></p>
+    <p><%= manager.getHands() %></p>
+    <p><%= manager.getResult() %></p>
     <p><a href="play">もう一度</a></p>
   </main>
   
