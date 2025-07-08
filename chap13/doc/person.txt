@@ -1,0 +1,19 @@
+
+
+データベース: example
+
+テーブル: persons
+カラム: id     固定文字列       6   'id0001'
+        name   可変長文字列     50  '菅原文太'
+        state  都道府県(可変長) 10  '大阪'
+        
+CREATE TABLE persons (
+  id char(6) PRIMARY KEY,
+  name varchar(50) NOT NULL,
+  state varchar(10) NOT NULL
+);
+
+INSERT INTO persons (id, name, state) VALUES
+('ID0001', '菅原文太', '大阪'),
+('ID0002', '千葉真一', '兵庫'),
+('ID0003', '北大路欣也', '奈良');
