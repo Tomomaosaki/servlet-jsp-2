@@ -1,0 +1,105 @@
+@charset "UTF-8";
+
+body, h1, h2, h3, ul {
+	margin: 0;
+}
+
+p {
+	margin-top: 0;
+	margin-bottom: 16px;
+}
+
+ul {
+	padding: 0;
+}
+
+.error {
+	color: red;
+}
+
+a {
+	color: #000;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #000;
+	text-decoration: underline;
+}
+
+h2 {
+	margin-bottom: 16px;
+}
+
+.container {
+	display: flex;
+	width: 800px;
+	margin: 0 auto 50px;
+}
+
+header {
+	background-color: lightblue;
+	padding: 16px 0;
+	margin-bottom: 32px;
+}
+
+header h1 {
+	width: 800px;
+	margin: 0 auto;
+}
+
+main {
+	width: 600px;
+}
+
+aside {
+	width: 200px;
+}
+
+footer {
+	width: 100%;
+	padding: 10px 0;
+	background-color: lightblue;
+	position: fixed;
+	bottom: 0;
+	text-align: center;
+}
+
+/*
+ * tableのデザイン
+ */
+ table {
+	border-collapse: collapse;
+ }
+ 
+th, td {
+	border: solid 1px #aaa;
+}
+
+th, td {
+	padding: 5px 8px;
+}
+
+th {
+	text-align: left;
+	background-color: rgb(239, 248, 250);
+}
+
+.no-border {
+	border: none;
+}
+
+.no-bk {
+	background-color: transparent;
+}
+
+/*
+ * asideのデザイン
+ */
+aside input[name="age"] {
+	width: 32px;
+}
+
+.menu-item {
+	margin-bottom: 16px;
+}

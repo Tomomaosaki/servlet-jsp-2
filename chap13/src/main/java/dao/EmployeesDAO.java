@@ -30,6 +30,7 @@ public class EmployeesDAO {
 			
 			ResultSet rs = pStmt.executeQuery();
 			
+			// ↓イテレータ
 			while (rs.next()) {
 				String id = rs.getString("id");
 				String name = rs.getString("name");
