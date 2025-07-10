@@ -4,10 +4,10 @@ import java.util.List;
 
 import dao.EmployeesDAO;
 
-public class GetListByAgeLogic {
-	public List<Employee> execute(int age) {
+public class GetListByNameLogic {
+	public List<Employee> execute(String name) {
 		EmployeesDAO dao = new EmployeesDAO();
-		List<Employee> empList = dao.findByAge(age);
+		List<Employee> empList = dao.findByName(name);
 		return empList;
 	}
 }

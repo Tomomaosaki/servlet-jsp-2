@@ -48,6 +48,10 @@ header h1 {
 	margin: 0 auto;
 }
 
+header h1 a:hover {
+	text-decoration: none;
+}
+
 main {
 	width: 600px;
 }
@@ -98,6 +102,10 @@ th {
  */
 aside input[name="age"] {
 	width: 32px;
+}
+
+aside input[name="name"] {
+	width: 80px;
 }
 
 .menu-item {

@@ -26,4 +26,8 @@ public class Employee implements Serializable {
 		return age;
 	}
 	
+	public void setId(String id) {
+		this.id = id;
+	}
+	
 }
