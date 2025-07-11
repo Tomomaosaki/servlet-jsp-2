@@ -3,7 +3,7 @@
 <aside>
   <h2>サブメニュー</h2>
   <div class="menu-item">
-    <form action="create" method="get">
+    <form action="createInput" method="get">
       <input type="submit" value="新規作成">  
     </form>
   </div>

@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <jsp:include page="common/head.jsp" />
-<body>
+<body id="list">
   <jsp:include page="common/header.jsp" />
   
   <div class="container">

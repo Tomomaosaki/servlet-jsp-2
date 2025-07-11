@@ -22,15 +22,18 @@
         <table>
           <tr>
             <th>ID</th>
-            <td><input type="text" name="id"></td>
+            <td><input type="text" name="id"
+                       value="<c:out value="${emp.id}" />"></td>
           </tr>
           <tr>
             <th>名前</th>
-            <td><input type="text" name="name"></td>
+            <td><input type="text" name="name"
+                       value="<c:out value="${emp.name}" />"></td>
           </tr>
           <tr>
             <th>年齢</th>
-            <td><input type="text" name="age"></td>
+            <td><input type="text" name="age"
+                       value="<c:out value="${emp.age}" />"></td>
           </tr>        
         </table>
         <a href="list"><button type="button">もどる</button></a>

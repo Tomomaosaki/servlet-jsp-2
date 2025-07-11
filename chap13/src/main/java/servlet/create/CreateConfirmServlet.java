@@ -27,6 +27,16 @@ public class CreateConfirmServlet extends HttpServlet {
  		int age = validator.checkAge(ageTxt, errorList);
  		Employee emp = new Employee(id, name, age);
  		validator.check(emp, errorList);
+ 		String path = "";
+ 		if (errorList.size() > 0) { 
+ 			// エラーがあれば（errorListにエラーが入っていたら）入力画面に戻る
+ 			request.setAttribute("errorList", errorList);
+ 			path = "WEB-INF/jsp/create/createInput.jsp";
+ 		} else { // エラーがなければ
+ 			path = "WEB-INF/jsp/create/createConfirm.jsp";
+ 		}
+		request.setAttribute("emp", emp);
+ 		request.getRequestDispatcher(path).forward(request, response);
  	}
 
 }
