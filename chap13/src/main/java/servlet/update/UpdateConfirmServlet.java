@@ -1,4 +1,4 @@
-package servlet.create;
+package servlet.update;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -14,28 +14,28 @@ import model.Employee;
 import servlet.util.MakeEmpByParam;
 import servlet.util.Validator;
 
-@WebServlet("/createConfirm")
-public class CreateConfirmServlet extends HttpServlet {
+@WebServlet("/updateConfirm")
+public class UpdateConfirmServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
- 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
  		MakeEmpByParam makeEmp = new MakeEmpByParam();
  		Employee emp = makeEmp.execute(request); 		
  		
- 		Validator validator = new Validator();
- 		List<String> errorList = new ArrayList<>();
- 		validator.checkCreate(emp, errorList);
+ 		Validator validator = new Validator();		
+		List<String> errorList = new ArrayList<>(); 		
+ 		validator.checkUpdate(emp, errorList);
  		
  		String path = "";
  		if (errorList.size() > 0) { 
  			// エラーがあれば（errorListにエラーが入っていたら）入力画面に戻る
  			request.setAttribute("errorList", errorList);
- 			path = "WEB-INF/jsp/create/createInput.jsp";
+ 			path = "WEB-INF/jsp/update/updateInput.jsp";
  		} else { // エラーがなければ
- 			path = "WEB-INF/jsp/create/createConfirm.jsp";
+ 			path = "WEB-INF/jsp/update/updateConfirm.jsp";
  		}
 		request.setAttribute("emp", emp);
  		request.getRequestDispatcher(path).forward(request, response);
- 	}
+	}
 
 }

@@ -113,6 +113,36 @@ public class EmployeesDAO {
 		return empList;
 	}
 
+	public Employee findEmpById(String id) {
+		Employee employee = null;
+		try {
+			Class.forName("org.h2.Driver"); // ←"org.h2.Driver"というクラスを読み込む（h2-2.3.232.jarに入っている）
+		} catch (ClassNotFoundException e) {
+			throw new IllegalStateException("JDBCドライバを読み込めませんでした");
+		}
+		
+		try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
+			String sql = 
+					"""
+					SELECT id, name, age FROM employees
+					WHERE id = ? 
+					""";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+			pStmt.setString(1, id); // ←1つめの「?」のこと(1はじまり)
+			ResultSet rs = pStmt.executeQuery(); // executeQueryメソッドを実行
+			
+			if (rs.next()) {
+				String name = rs.getString("name");
+				int age = rs.getInt("age");
+				employee = new Employee(id, name, age);
+			}		
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}		
+		return employee;
+	}
+
 	// trye---そのIDは存在していない
 	// false---そのIDは存在している
 	public boolean isNotExistId(String id) {		
@@ -155,6 +185,35 @@ public class EmployeesDAO {
 			pStmt.setString(1, emp.getId()); // ←1つめの「?」の内容(1はじまり)
 			pStmt.setString(2, emp.getName());
 			pStmt.setInt(3, emp.getAge());
+			
+			int result = pStmt.executeUpdate(); // 変更した数が返ってくる（1は成功）
+			if (result != 1) {
+				return false;
+			}		
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}		
+		return true;
+	}
+
+	public boolean update(Employee emp) {
+		try {
+			Class.forName("org.h2.Driver"); // ←"org.h2.Driver"というクラスを読み込む（h2-2.3.232.jarに入っている）
+		} catch (ClassNotFoundException e) {
+			throw new IllegalStateException("JDBCドライバを読み込めませんでした");
+		}
+		
+		try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
+			String sql = 
+					"""
+					UPDATE employees SET name = ?, age = ?
+	                WHERE id = ? 
+					""";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+			pStmt.setString(1, emp.getName()); // ←1つめの「?」の内容(1はじまり)
+			pStmt.setInt(2, emp.getAge());
+			pStmt.setString(3, emp.getId());
 			
 			int result = pStmt.executeUpdate(); // 変更した数が返ってくる（1は成功）
 			if (result != 1) {

@@ -32,7 +32,7 @@
             <td><c:out value="${emp.name}" /></td>
             <td><c:out value="${emp.age}" /></td>
             <td class="no-border">
-              <form action="#" method="post">
+              <form action="updateInput" method="get">
                 <input type="hidden" name="id" value="${emp.id}">
                 <input type="submit" value="編集">
               </form>

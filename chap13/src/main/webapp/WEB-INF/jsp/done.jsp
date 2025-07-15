@@ -3,13 +3,13 @@
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html>
-<jsp:include page="../common/head.jsp" />
+<jsp:include page="common/head.jsp" />
 <body>
-  <jsp:include page="../common/header.jsp" />
+  <jsp:include page="common/header.jsp" />
   
   <div class="container">
     <main>
-      <h2>新規社員登録・結果</h2>
+      <h2>${h2_text}</h2>
       <div class="error">
         <ul>
           <c:forEach var="errorMsg" items="${errorList}">
@@ -20,9 +20,9 @@
       <p><c:out value="${msg}" /></p>
       <p><a href="list"><button type="button">一覧へ</button></a></p>
     </main>
-    <jsp:include page="../common/aside.jsp" />
+    <jsp:include page="common/aside.jsp" />
   </div> <!--.container end-->
   
-  <jsp:include page="../common/footer.jsp" />
+  <jsp:include page="common/footer.jsp" />
 </body>
 </html>

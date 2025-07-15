@@ -1,4 +1,4 @@
-package servlet.create;
+package servlet.update;
 
 import java.io.IOException;
 
@@ -9,29 +9,27 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import model.Employee;
-import model.RegisterEmpLogic;
+import model.UpdateEmpLogic;
+import servlet.util.MakeEmpByParam;
 
-@WebServlet("/createDone")
-public class CreateDoneServlet extends HttpServlet {
+@WebServlet("/updateDone")
+public class UpdateDoneServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String id = request.getParameter("id");
- 		String name = request.getParameter("name");
- 		String ageTxt = request.getParameter("age");
- 		int age = Integer.parseInt(ageTxt);		
- 		Employee emp = new Employee(id, name, age);
+ 		MakeEmpByParam makeEmp = new MakeEmpByParam();
+ 		Employee emp = makeEmp.execute(request);		
  		
- 		RegisterEmpLogic logic = new RegisterEmpLogic();
+ 		UpdateEmpLogic logic = new UpdateEmpLogic();
  		boolean result = logic.execute(emp);
  		String msg ="";
  		if (result) {
- 			msg ="登録しました";
+ 			msg ="更新しました";
  		} else {
- 			msg ="登録に失敗しました";
+ 			msg ="更新に失敗しました";
  		}
  		request.setAttribute("msg", msg);
- 		request.setAttribute("h2_text", "新規社員登録・結果");
+ 		request.setAttribute("h2_text", "社員情報更新・結果");
  		String path = "WEB-INF/jsp/done.jsp";
  		request.getRequestDispatcher(path).forward(request, response);
 	}
