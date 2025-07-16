@@ -1,15 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+
+<c:if test="${nextURL == 'createDone'}">
+  <c:set var="h2_text" value="新規社員登録・確認" />
+  <c:set var="gobackURL" value="createInput" />
+  <c:set var="btn_text" value="登録" />
+</c:if>
+  
+<c:if test="${nextURL == 'updateDone'}">
+  <c:set var="h2_text" value="社員情報・確認" />
+  <c:set var="gobackURL" value="updateInput" />
+  <c:set var="btn_text" value="更新" />
+</c:if>
+  
 <!DOCTYPE html>
 <html>
-<jsp:include page="../common/head.jsp" />
+<jsp:include page="common/head.jsp" />
 <body>
-  <jsp:include page="../common/header.jsp" />
+  <jsp:include page="common/header.jsp" />
   
   <div class="container">
     <main>
-      <h2>社員情報編集・確認</h2>
+      <h2>${h2_text}</h2>
       <div class="error">
         <ul>
           <c:forEach var="errorMsg" items="${errorList}">
@@ -33,20 +46,20 @@
         </tr>        
       </table>
       
-      <form action="updateDone" method="post">
+      <form action="${nextURL}" method="post">
         <input type="hidden" name="id" value="${emp.id}">
         <input type="hidden" name="name" value="${emp.name}">
         <input type="hidden" name="age" value="${emp.age}">
         
         <input type="submit" value="もどる"
-               formaction="updateInput" formmethod="post">
-        <input type="submit" value="更新">
+               formaction="${gobackURL}" formmethod="post">
+        <input type="submit" value="${btn_text}">
       </form>
       
     </main>
-    <jsp:include page="../common/aside.jsp" />
+    <jsp:include page="common/aside.jsp" />
   </div> <!--.container end-->
   
-  <jsp:include page="../common/footer.jsp" />
+  <jsp:include page="common/footer.jsp" />
 </body>
 </html>

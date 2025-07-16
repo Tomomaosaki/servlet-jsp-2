@@ -22,11 +22,12 @@ public class UpdateDoneServlet extends HttpServlet {
  		
  		UpdateEmpLogic logic = new UpdateEmpLogic();
  		boolean result = logic.execute(emp);
+ 		String job = "更新";
  		String msg ="";
  		if (result) {
- 			msg ="更新しました";
+ 			msg = job + "しました";
  		} else {
- 			msg ="更新に失敗しました";
+ 			msg = job + "に失敗しました";
  		}
  		request.setAttribute("msg", msg);
  		request.setAttribute("h2_text", "社員情報更新・結果");

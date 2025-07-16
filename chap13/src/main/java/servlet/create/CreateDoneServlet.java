@@ -10,25 +10,24 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import model.Employee;
 import model.RegisterEmpLogic;
+import servlet.util.MakeEmpByParam;
 
 @WebServlet("/createDone")
 public class CreateDoneServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String id = request.getParameter("id");
- 		String name = request.getParameter("name");
- 		String ageTxt = request.getParameter("age");
- 		int age = Integer.parseInt(ageTxt);		
- 		Employee emp = new Employee(id, name, age);
+		MakeEmpByParam makeEmp = new MakeEmpByParam();		
+ 		Employee emp = makeEmp.execute(request);
  		
  		RegisterEmpLogic logic = new RegisterEmpLogic();
  		boolean result = logic.execute(emp);
+ 		String job = "登録";
  		String msg ="";
  		if (result) {
- 			msg ="登録しました";
+ 			msg = job + "しました";
  		} else {
- 			msg ="登録に失敗しました";
+ 			msg = job + "に失敗しました";
  		}
  		request.setAttribute("msg", msg);
  		request.setAttribute("h2_text", "新規社員登録・結果");
