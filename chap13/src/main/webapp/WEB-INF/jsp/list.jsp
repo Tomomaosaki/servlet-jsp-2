@@ -38,7 +38,7 @@
               </form>
             </td>
             <td class="no-border">
-              <form action="#" method="post">
+              <form action="deleteInput" method="get">
                 <input type="hidden" name="id" value="${emp.id}">
                 <input type="submit" value="削除">
               </form>

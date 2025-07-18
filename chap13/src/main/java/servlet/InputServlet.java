@@ -12,26 +12,37 @@ import model.Employee;
 import model.GetEmpByIdLogic;
 import servlet.util.MakeEmpByParam;
 
-@WebServlet(urlPatterns = {"/createInput", "/updateInput"})
+@WebServlet(urlPatterns = {"/createInput", "/updateInput", "/deleteInput"})
 public class InputServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String path = request.getServletPath(); // どこのサーブレットから来ているか
+		String url = "WEB-INF/jsp/input.jsp";
+		String nextURL = null;
 		switch (path) {
 		case "/createInput":
-			request.setAttribute("nextURL", "createConfirm");
+			nextURL = "createConfirm";
 			break;
 		case "/updateInput":
-			String id = request.getParameter("id");
-			GetEmpByIdLogic logic = new GetEmpByIdLogic();
-			Employee emp = logic.execute(id);
-			request.setAttribute("emp", emp);
-			request.setAttribute("nextURL", "updateConfirm");
+			setEmpInScope(request);
+			nextURL = "updateConfirm";
 			break;
-		}		
-		String url = "WEB-INF/jsp/input.jsp";
+		case "/deleteInput":
+			setEmpInScope(request);
+			nextURL = "deleteDone";
+			url = "WEB-INF/jsp/confirm.jsp";
+			break;
+		}
+		request.setAttribute("nextURL", nextURL);
 		request.getRequestDispatcher(url).forward(request, response);
+	}
+	
+	private void setEmpInScope(HttpServletRequest request) {
+		String id = request.getParameter("id");
+		GetEmpByIdLogic logic = new GetEmpByIdLogic();
+		Employee emp = logic.execute(id);
+		request.setAttribute("emp", emp);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		

@@ -9,9 +9,15 @@
 </c:if>
   
 <c:if test="${nextURL == 'updateDone'}">
-  <c:set var="h2_text" value="社員情報・確認" />
+  <c:set var="h2_text" value="社員情報編集・確認" />
   <c:set var="gobackURL" value="updateInput" />
   <c:set var="btn_text" value="更新" />
+</c:if>
+
+<c:if test="${nextURL == 'deleteDone'}">
+  <c:set var="h2_text" value="社員情報削除・確認" />
+  <c:set var="gobackURL" value="list" />
+  <c:set var="btn_text" value="削除" />
 </c:if>
   
 <!DOCTYPE html>
@@ -51,8 +57,17 @@
         <input type="hidden" name="name" value="${emp.name}">
         <input type="hidden" name="age" value="${emp.age}">
         
-        <input type="submit" value="もどる"
-               formaction="${gobackURL}" formmethod="post">
+        <c:if test="${nextURL == 'createDone' || nextURL == 'updateDone'}">
+        	<input type="submit" value="もどる"
+                   formaction="${gobackURL}" formmethod="post">
+        </c:if>
+        
+        <c:if test="${nextURL == 'deleteDone'}">
+        	<a href="list">
+        		<button type="button">もどる</button>
+        	</a>
+        </c:if>       
+
         <input type="submit" value="${btn_text}">
       </form>
       
